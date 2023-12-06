@@ -1,9 +1,6 @@
 class Solution {
     public int solution(int n) {
-     
-        int i=n/2;
-        
-        int answer = i*(i+1);
+        int answer = n/2*(n-(n-1)/2);
         return answer;
     }
 }
