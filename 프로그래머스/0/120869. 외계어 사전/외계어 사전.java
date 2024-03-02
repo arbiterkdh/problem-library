@@ -1,6 +1,5 @@
 class Solution {
     public int solution(String[] spell, String[] dic) {
-        int answer = 2;
         for(String e:dic){
             int num = 0;
             for(String f:spell){
@@ -11,10 +10,9 @@ class Solution {
                 }
             }
             if(num==e.length()){
-                answer=1;
-                break;
+                return 1;
             }
         }
-        return answer;
+        return 2;
     }
 }
