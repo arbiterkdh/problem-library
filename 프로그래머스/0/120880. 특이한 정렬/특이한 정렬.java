@@ -19,8 +19,8 @@ class Solution {
         
         int end = sNum.length-1;
         int[] sNumR = new int[sNum.length];
-        for(int i =0;i<sNum.length;i++){
-            sNumR[end] = sNum[i];
+        for(int i : sNum){
+            sNumR[end] = i;
             end--;
         }
         // n보다 작거나 같은 수의 배열, n보다 큰 수의 배열을 만들고, 작은 수는 역순으로 정렬.
