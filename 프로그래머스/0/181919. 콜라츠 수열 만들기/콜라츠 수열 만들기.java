@@ -9,9 +9,6 @@ class Solution {
         return list.toArray();
     }
     
-    
-    
-    
     public static int colatz (int n){
         list.add(n);
         if(n%2==1){
