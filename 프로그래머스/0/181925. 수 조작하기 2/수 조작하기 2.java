@@ -3,14 +3,12 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         String answer = "";
         for(int i = 1; i<numLog.length;i++){
-            if(numLog[i]==numLog[i-1]+1){
-                sb.append("w");
-            }else if(numLog[i]==numLog[i-1]-1){
-                sb.append("s");
-            }else if(numLog[i]==numLog[i-1]+10){
-                sb.append("d");
-            }else{sb.append("a");
-                 }
+            switch (numLog[i]-numLog[i-1]){
+                    case 1 -> sb.append("w");
+                    case -1 -> sb.append("s");
+                    case 10 -> sb.append("d");
+                    case -10 -> sb.append("a");
+            }
         }
         return sb.toString();
     }
