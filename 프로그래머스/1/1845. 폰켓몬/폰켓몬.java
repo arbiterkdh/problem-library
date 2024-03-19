@@ -5,10 +5,10 @@ class Solution {
         int get = 0;
         int idx = 0;
         
-        List<Integer> list = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
         while(idx<nums.length && get!=nums.length/2){
-            if(!list.contains(nums[idx])){
-                list.add(nums[idx]);
+            if(!set.contains(nums[idx])){
+                set.add(nums[idx]);
                 get++;
             }
             idx++;
