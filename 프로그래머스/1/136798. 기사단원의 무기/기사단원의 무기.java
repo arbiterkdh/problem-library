@@ -1,34 +1,22 @@
 class Solution {
     public int solution(int number, int limit, int power) {
-        int answer = 1;
+        int answer = 0;
+        int[] count = new int[number+1];
         
-        for(int i = 2; i<=number; i++){
-            int indexNumber = i;
-            int base = 2;
-            int count = 1;
-            int measure = 1;
-            
-            while(indexNumber>=1){
-                
-                if(indexNumber%base==0){
-                    indexNumber/=base;
-                    measure++;
-                }else{
-                    count*=measure;
-                    
-                    if(indexNumber==1) break;
-                    
-                    measure = 1;
-                    base++;
-                    
-                }
-                
+        for(int i = 1; i<=number; i++){
+            for(int j = 1; j<=number/i; j++){
+                count[i*j]++;
             }
-            
-            
-            if(count>limit) count = power;
-            answer+=count;
         }
+        
+        for(int i = 1; i<=number; i++){
+            if(count[i]<=limit){
+                answer += count[i];
+            }else{
+                answer += power;
+            }
+        }
+        
         return answer;
     }
 }
