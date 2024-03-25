@@ -1,10 +1,21 @@
-import java.util.ArrayList;
 class Solution {
     public String[] solution(String[] todo_list, boolean[] finished) {
-        ArrayList<String> list = new ArrayList<>();
-        for(int i =0;i<todo_list.length;i++){
-            if(!finished[i]){list.add(todo_list[i]);}
+        int left = 0;
+        for (boolean done : finished) {
+            if (!done) left++;
         }
-        return list.toArray(new String[0]);
+        String[] goal = new String[left];
+        
+        int len = todo_list.length;
+        int idx = 0;
+        
+        for (int i = 0; i < len; i++) {
+            if (!finished[i]) {
+                goal[idx] = todo_list[i];
+                idx++;
+            }
+        }
+        
+        return goal;
     }
 }
