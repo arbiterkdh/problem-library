@@ -3,8 +3,7 @@ class Solution {
         new_id = new_id.toLowerCase()
             .replaceAll("[^ a-z0-9_\\-.]", "")
             .replaceAll("\\.+",".")
-            .replaceAll("^\\.+", "")
-            .replaceAll("\\.+$", "");
+            .replaceAll("^[.]|[.]$", "");
         
         if (new_id.isEmpty()) {
             new_id = "a";
