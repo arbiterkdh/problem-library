@@ -1,5 +1,12 @@
+import java.util.Map;
+import java.util.HashMap;
+
 class Solution {
     public String solution(int num) {
-        return num%2==0 ? "Even" : "Odd";
+        Map<Integer, String> check = new HashMap<>();
+        check.put(0, "Even");
+        check.put(1, "Odd");
+        
+        return check.get(Math.abs(num%2));
     }
 }
