@@ -1,6 +1,6 @@
 class Solution {
     public long solution(long n) {
-        long a = (long)Math.sqrt(n);
-        return a*a==n ? (long)Math.pow(a+1,2) : -1L;
+        long l = (long)Math.sqrt(n);
+        return n == (long)Math.pow(l, 2) ? (long)Math.pow(l + 1, 2) : -1;
     }
 }
