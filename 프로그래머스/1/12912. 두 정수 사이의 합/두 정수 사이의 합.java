@@ -1,16 +1,9 @@
+
+
 class Solution {
-    public long solution(int a, int b) {
-        long answer = 0;
-        if(b>=a){
-            for(long i = a ; i<=b ; i++){
-            answer+= i;
-            }   
-        }else{
-            for(long i = b ; i<=a ; i++){
-            answer+= i;
-            } 
-        }
+    public long solution(long a, long b) {
         
-        return answer;
+        
+        return a < b ? (b * (b + 1) - (a - 1) * a) / 2 : a > b ? (a * (a + 1) - (b - 1) * b) / 2 : a;
     }
 }
