@@ -1,9 +1,9 @@
 class Solution {
     public int solution(int[] absolutes, boolean[] signs) {
-        int answer = 123456789;
-        answer = signs[0] ? absolutes[0] : -absolutes[0] ;
-        for(int i = 1; i<absolutes.length;i++){
-            answer = signs[i] ? answer + absolutes[i] : answer - absolutes[i];
+        int answer = 0;
+        for (int i = 0; i < signs.length; i++) {
+            if (signs[i]) answer += absolutes[i];
+            else answer -= absolutes[i];
         }
         return answer;
     }
