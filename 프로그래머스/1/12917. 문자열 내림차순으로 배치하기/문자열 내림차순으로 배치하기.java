@@ -1,13 +1,10 @@
-import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Solution {
     public String solution(String s) {
-        StringBuilder sb = new StringBuilder();
-        String[] sArr = s.split("");
-        Arrays.sort(sArr , (x,y) -> y.charAt(0) - x.charAt(0));
-        for(String e : sArr){
-            sb.append(e);
-        }
-        return sb.toString();
+        
+        return Stream.of(s.split("")).sorted(Comparator.reverseOrder()).collect(Collectors.joining());
     }
 }
