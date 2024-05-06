@@ -13,10 +13,12 @@ public class Main {
         br.close();
 
         long n = 0;
-        for (int i = 0; i < L; i++)
-            n += (long) ((s.charAt(i) - 'a' + 1) * Math.pow(31, i));
-        n %= 1234567891;
-        bw.write(n + "");
+        long pow = 1;
+        for (int i = 0; i < L; i++) {
+            n += (s.charAt(i) - 'a' + 1) * pow;
+            pow = (pow * 31) % 1234567891;
+        }
+        bw.write(n % 1234567891 + "");
         bw.flush();
         bw.close();
     }
