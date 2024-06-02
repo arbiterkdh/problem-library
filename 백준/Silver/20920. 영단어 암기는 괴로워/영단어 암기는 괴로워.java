@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
-
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,9 +28,15 @@ public class Main {
         br.close();
         List<String> list = new ArrayList<>();
         map.keySet().stream()
-                .sorted()
-                .sorted((s1, s2) -> s2.length() - s1.length())
-                .sorted((s1, s2) -> map.get(s2) - map.get(s1)).forEach(list::add);
+                .sorted((s1, s2) -> {
+                    if (map.get(s1) == map.get(s2)) {
+                        if (s1.length() == s2.length()) {
+                            return s1.compareTo(s2);
+                        }
+                        return s2.length() - s1.length();
+                    }
+                    return map.get(s2) - map.get(s1);
+                }).forEach(list::add);
         for (String s : list) {
             bw.write(s + "\n");
         }
