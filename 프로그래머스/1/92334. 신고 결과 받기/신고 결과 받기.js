@@ -1,26 +1,17 @@
-function solution(id_list, report, n) {
+function solution(id_list, report, k) {
     let answer = [];
-    const reducedReport = report.reduce((acc, curr) => {
-        let [k, v] = curr.split(" ");
-        if (acc[v] == undefined) {
-            acc[v] = [];
-        }
-        if (!acc[v].includes(k)) {
-            acc[v].push(k);
-        }
-        return acc;
-    }, {});
+    let reportEntries = [...new Set(report)].map(report => report.split(" "));
+    let accusedMap = new Map();
+    for (const [reporter, accused] of reportEntries) {
+        accusedMap.set(accused, accusedMap.get(accused) + 1 || 1);
+    }
     
-    const reducedIdList = id_list.reduce((acc, id) => {
-        if (reducedReport[id]?.length >= n) {
-            reducedReport[id].forEach(reporter => {
-               acc[reporter] = (acc[reporter] ?? 0) + 1;
-            });
+    let reportMap = new Map();
+    for (const [reporter, accused] of reportEntries) {
+        if (accusedMap.get(accused) >= k) {
+            reportMap.set(reporter, reportMap.get(reporter) + 1 || 1);
         }
-        return acc;
-    }, {});
+    }
     
-    for (let id of id_list) answer.push(reducedIdList[id] ?? 0);
-    
-    return answer;
+    return id_list.map(id => reportMap.get(id) || 0);
 }
