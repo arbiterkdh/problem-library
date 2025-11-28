@@ -6,7 +6,7 @@ function solution(ingredient) {
         if (order.every((ingNum, idx) => ingNum == ingredient[i + idx])) {
             ingredient.splice(i, 4);
             burgerCnt++;
-            i = Math.max(i - 4, -1);
+            i = Math.max(i - 3, -1);
         }
     }
     
