@@ -1,6 +1,6 @@
 class Solution {
     public int solution(int[] mats, String[][] park) {
-        int answer = 0;
+        int answer = -1;
         int availableSize = checkSize(park);
 
         for (int mat : mats) {
@@ -9,7 +9,7 @@ class Solution {
             }
         }
 
-        return answer == 0 ? -1 : answer;
+        return answer;
     }
 
     int checkSize(String[][] park) {
