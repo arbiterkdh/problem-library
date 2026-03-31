@@ -1,0 +1,34 @@
+-- 코드를 작성해주세요
+WITH RECURSIVE GEN AS (
+    SELECT 
+        ID,
+        PARENT_ID,
+        1 AS GENERATION
+    FROM
+        ECOLI_DATA
+    WHERE 
+        PARENT_ID IS NULL
+    UNION ALL
+    SELECT
+        ED.ID,
+        ED.PARENT_ID,
+        G.GENERATION + 1
+    FROM
+        ECOLI_DATA ED
+    JOIN
+        GEN G ON ED.PARENT_ID = G.ID
+)
+
+SELECT 
+    COUNT(*) AS COUNT,
+    P.GENERATION
+FROM 
+    GEN P
+LEFT JOIN 
+    GEN C ON P.ID = C.PARENT_ID
+WHERE 
+    C.PARENT_ID IS NULL
+GROUP BY
+    P.GENERATION
+ORDER BY
+    P.GENERATION
