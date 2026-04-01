@@ -1,0 +1,19 @@
+-- 코드를 작성해주세요
+SELECT
+    I.ITEM_ID,
+    I.ITEM_NAME,
+    I.RARITY
+FROM 
+    ITEM_INFO I
+JOIN (
+    SELECT 
+        P.ITEM_ID
+    FROM
+        ITEM_TREE P
+    LEFT JOIN
+        ITEM_TREE C ON P.ITEM_ID = C.PARENT_ITEM_ID
+    WHERE 
+        C.ITEM_ID IS NULL
+) T ON I.ITEM_ID = T.ITEM_ID
+ORDER BY
+    I.ITEM_ID DESC
