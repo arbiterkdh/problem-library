@@ -1,12 +1,19 @@
 -- 코드를 작성해주세요
 SELECT
-    DISTINCT D.ID,
-    D.EMAIL,
-    D.FIRST_NAME,
-    D.LAST_NAME
+    ID,
+    EMAIL,
+    FIRST_NAME,
+    LAST_NAME
 FROM
-    DEVELOPERS D
-JOIN
-    SKILLCODES S ON D.SKILL_CODE & S.CODE AND S.CATEGORY = 'Front End'
+    DEVELOPERS
+WHERE
+    SKILL_CODE & (
+        SELECT 
+            SUM(CODE) 
+        FROM
+            SKILLCODES
+        WHERE
+            CATEGORY = 'Front End'
+    )
 ORDER BY
-    D.ID
+    ID
