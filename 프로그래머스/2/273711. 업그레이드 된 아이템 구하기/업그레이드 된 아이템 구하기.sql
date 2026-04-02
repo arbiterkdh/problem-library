@@ -1,34 +1,20 @@
 -- 코드를 작성해주세요
-WITH RARE_ITEM AS (
-    SELECT 
-        I.ITEM_ID
-    FROM
-        ITEM_INFO I
-    JOIN
-        ITEM_TREE T ON I.ITEM_ID = T.ITEM_ID
-    WHERE
-        I.RARITY = 'RARE'
-)
-,INFO_TREE AS (
-    SELECT
-        C.PARENT_ITEM_ID,
-        C.ITEM_ID,
-        I.ITEM_NAME,
-        I.RARITY
-    FROM
-        ITEM_TREE P
-    JOIN
-        ITEM_TREE C ON P.ITEM_ID = C.PARENT_ITEM_ID
-    JOIN
-        ITEM_INFO I ON C.ITEM_ID = I.ITEM_ID
-)
 SELECT
-    T.ITEM_ID,
-    T.ITEM_NAME,
-    T.RARITY
+    I.ITEM_ID,
+    I.ITEM_NAME,
+    I.RARITY
 FROM
-    RARE_ITEM R
+    ITEM_INFO I
 JOIN
-    INFO_TREE T ON R.ITEM_ID = T.PARENT_ITEM_ID
+    ITEM_TREE T ON I.ITEM_ID = T.ITEM_ID
+WHERE 
+    T.PARENT_ITEM_ID IN (
+    SELECT
+        ITEM_ID
+    FROM
+        ITEM_INFO
+    WHERE
+        RARITY = 'RARE'
+)
 ORDER BY
-    T.ITEM_ID DESC
+    I.ITEM_ID DESC
