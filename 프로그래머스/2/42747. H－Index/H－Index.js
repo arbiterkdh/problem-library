@@ -1,18 +1,9 @@
 function solution(citations) {
-    var answer = 0;
-
-    citations = citations.sort((a,b) => b-a);
-
-    let arr = [];
-
-    for(let i=0; i<citations.length; i++){
-        arr.push(citations[i]);
-        if(citations[i]<arr.length){
-            break;
-        }
-        answer++;
+    const reversed = citations.sort((a, b) => b - a);
+    let hIndex = 0;
+    for (let h = 0; h < reversed.length; h++) {
+        if (reversed[h] < h + 1) break;
+        hIndex++;
     }
-
-
-    return answer;
+    return hIndex;
 }
