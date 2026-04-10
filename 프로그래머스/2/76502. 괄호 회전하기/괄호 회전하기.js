@@ -1,5 +1,5 @@
 function solution(s) {
-    if (s.length < 2) return 0;
+    if (s.length % 2 == 1) return 0;
 
     let matchCnt = 0;
     const sArr = s.split("");
