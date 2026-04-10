@@ -11,14 +11,16 @@ function solution(s) {
 
     for (let i = 0; i < sArr.length; i++) {
         const stack = [];
+        let flag = true;
         for (let j = 0; j < sArr.length; j++) {
-            if (sArr[j] === parentheses[stack[stack.length - 1]]) {
-                stack.pop();
-            } else {
+            if (sArr[j] in parentheses) {
                 stack.push(sArr[j]);
+            } else if (parentheses[stack.pop()] !== sArr[j]) {
+                flag = false;
+                break;
             }
         }
-        if (!stack.length) {
+        if (flag) {
             matchCnt++;
         }
         sArr.push(sArr.shift());
