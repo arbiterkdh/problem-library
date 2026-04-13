@@ -3,16 +3,14 @@ function solution(progresses, speeds) {
     for (let i = 0; i < speeds.length; i++) {
         speeds[i] = Math.ceil((100 - progresses[i]) / speeds[i]);
     }
-    let idx = 0;
     distributions.push(1);
-    while (idx < speeds.length - 1) {
-        if (speeds[idx] >= speeds[idx + 1]) {
-            speeds[idx + 1] = speeds[idx];
+    for (let i = 0; i < speeds.length - 1; i++) {
+        if (speeds[i] >= speeds[i + 1]) {
+            speeds[i + 1] = speeds[i];
             distributions[distributions.length - 1]++;
         } else {
             distributions.push(1);
         }
-        idx++;
     }
     return distributions;
 }
