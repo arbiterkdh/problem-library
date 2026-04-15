@@ -1,0 +1,35 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	const rl = readline.createInterface({ input: process.stdin });
+	const it = rl[Symbol.asyncIterator]();
+	let line = await it.next();
+	const N = Number(line.value);
+
+	const results = [];
+	for (let i = 0; i < N; i++) {
+		line = await it.next();
+		const A = line.value.split(" ").map(Number);
+		line = await it.next();
+		const B = line.value.split(" ").map(Number);
+		const aMap = [0, 0, 0, 0];
+		const bMap = [0, 0, 0, 0];
+		for (let j = 1; j <= A[0]; j++) {
+			aMap[4 - A[j]] += A[j];
+		}
+		for (let j = 1; j <= B[0]; j++) {
+			bMap[4 - B[j]] += B[j];
+		}
+		let result = "D";
+		for (let j = 0; j < aMap.length; j++) {
+			if (aMap[j] != bMap[j]) {
+				result = aMap[j] > bMap[j] ? "A" : "B";
+				break;
+			}
+		}
+		results.push(result);
+	}
+	console.log(results.join('\n'));
+	process.exit();
+})();
