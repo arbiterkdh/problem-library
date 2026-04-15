@@ -1,0 +1,16 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	let rl = readline.createInterface({ input: process.stdin });
+	
+	for await (const line of rl) {
+		const [K, D1, D2] = line.split(" ").map(Number);
+		const bottom = Math.abs(D1 - D2) / 2;
+		const heightPow = Math.pow(K, 2) - Math.pow(bottom, 2);
+		console.log(heightPow * 4);
+		rl.close();
+	}
+	
+	process.exit();
+})();
