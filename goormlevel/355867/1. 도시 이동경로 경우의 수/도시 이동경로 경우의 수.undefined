@@ -1,0 +1,17 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	let rl = readline.createInterface({ input: process.stdin });
+	
+	for await (const line of rl) {
+		if (Number(line) == 1) {
+			console.log(0);
+		} else {
+			console.log(String(BigInt(2) ** BigInt(Number(line) - 2) % BigInt(Math.pow(10, 9) + 7)));
+		}
+		rl.close();
+	}
+	
+	process.exit();
+})();
